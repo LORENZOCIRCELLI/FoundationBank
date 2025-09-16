@@ -3,15 +3,19 @@ package com.foundationbank.project.model;
 import jakarta.persistence.GenerationType;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.foundationbank.project.model.base.Auditable;
+import com.foundationbank.project.model.enums.Role;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,6 +23,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -26,7 +31,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+@EqualsAndHashCode(callSuper = false)
+public class User extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +50,7 @@ public class User {
     @Size(min = 8, message = "Password must be atleast 8 characters long!")
     private String password;
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
     @NotBlank
     @Size(min = 11, max = 11, message = "The CPF must be exactly 11 digits!")
@@ -63,20 +70,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    /*For audict purposes, this variables will store the time the user was registered and
-    the last time it was updated*/
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate(){
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate(){
-        updatedAt = LocalDateTime.now();
-    }
+    @OneToMany(mappedBy = "user")
+    private List<Account> userAccounts = new ArrayList<>();
 
 }
