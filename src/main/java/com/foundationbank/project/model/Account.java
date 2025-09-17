@@ -1,6 +1,8 @@
 package com.foundationbank.project.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.foundationbank.project.model.base.Auditable;
 import com.foundationbank.project.model.enums.AccountStatus;
@@ -15,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -59,5 +62,9 @@ public class Account extends Auditable{
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany
+    @JoinColumn(name = "account", nullable = false)
+    private List<Transaction> accountTransactions = new ArrayList<>();
 
 }

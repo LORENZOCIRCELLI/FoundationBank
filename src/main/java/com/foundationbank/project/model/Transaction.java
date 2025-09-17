@@ -54,6 +54,10 @@ public class Transaction extends Auditable{
     @JoinColumn(name = "related_account_id")
     private Account relatedAccount;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     public Transaction(TransactionType transactionType, BigDecimal amount, String description, LocalDate transactionDate){
         this.transactionType = transactionType;
         this.amount = amount;
