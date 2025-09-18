@@ -54,18 +54,18 @@ public class User extends Auditable{
     private Role role;
     @NotBlank
     @Size(min = 11, max = 11, message = "The CPF must be exactly 11 digits!")
-    private String CPF;
+    private String cpf;
     @NotBlank
     private String phoneNumber;
     @NotNull(message = "Date of Birth is required!")
     private LocalDate dateOfBirth;
     
-    public User(String name, String surname, String email, String password, String CPF, String phoneNumber, LocalDate dateOfBirth){
+    public User(String name, String surname, String email, String password, String cpf, String phoneNumber, LocalDate dateOfBirth){
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.CPF = CPF;
+        this.cpf = cpf;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
     }
