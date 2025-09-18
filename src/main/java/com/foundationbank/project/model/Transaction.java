@@ -3,7 +3,7 @@ package com.foundationbank.project.model;
 import jakarta.persistence.GenerationType;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.foundationbank.project.model.base.Auditable;
 import com.foundationbank.project.model.enums.TransactionType;
@@ -44,7 +44,7 @@ public class Transaction extends Auditable{
 
     private String description;
 
-    private LocalDate transactionDate;
+    private LocalDateTime transactionDate;
 
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
@@ -58,7 +58,7 @@ public class Transaction extends Auditable{
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Transaction(TransactionType transactionType, BigDecimal amount, String description, LocalDate transactionDate){
+    public Transaction(TransactionType transactionType, BigDecimal amount, String description, LocalDateTime transactionDate){
         this.transactionType = transactionType;
         this.amount = amount;
         this.description = description;
