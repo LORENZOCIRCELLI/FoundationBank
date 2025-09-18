@@ -12,7 +12,9 @@ public abstract class Auditable {
     /*For audict purposes, this variables will store the time the user was registered and
     the last time it was updated*/
     
+    @SuppressWarnings("unused")
     private LocalDateTime createdAt;
+    @SuppressWarnings("unused")
     private LocalDateTime updatedAt;
 
     @PrePersist
