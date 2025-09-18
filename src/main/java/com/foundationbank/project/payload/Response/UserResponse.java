@@ -1,6 +1,9 @@
 package com.foundationbank.project.payload.Response;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.foundationbank.project.payload.DTO.UserDTO;
 
 import lombok.Data;
 
@@ -28,5 +31,7 @@ public class UserResponse {
     private String email;
     private String role;
     private LocalDate dateOfBirth;
+
+    private List<UserDTO> userDTOsList;
 
 }
