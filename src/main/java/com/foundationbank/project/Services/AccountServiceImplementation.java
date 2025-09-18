@@ -1,7 +1,7 @@
 package com.foundationbank.project.Services;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -50,7 +50,7 @@ public class AccountServiceImplementation implements AccountService{
 
         boolean accountExists = accountList.stream().anyMatch(a -> a.getAccountType().equals(account.getAccountType()));
 
-        if(accountExists){
+        if(!accountExists){
             Account createdAccount = modelMapper.map(account, Account.class);
 
             if(account.getAccountType().equals(AccountType.CHECKING)){
@@ -136,7 +136,7 @@ public class AccountServiceImplementation implements AccountService{
         transaction.setAccount(dbAccount);
         transaction.setTransactionType(TransactionType.DEPOSIT);
         transaction.setAmount(amount);
-        transaction.setTransactionDate(LocalDate.now());
+        transaction.setTransactionDate(LocalDateTime.now());
         transactionRepository.save(transaction);
 
     }
@@ -155,7 +155,7 @@ public class AccountServiceImplementation implements AccountService{
         transaction.setAccount(dbAccount);
         transaction.setTransactionType(TransactionType.WITHDRAW);
         transaction.setAmount(amount);
-        transaction.setTransactionDate(LocalDate.now());
+        transaction.setTransactionDate(LocalDateTime.now());
         transactionRepository.save(transaction);
 
     }
