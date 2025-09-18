@@ -1,13 +1,12 @@
 package com.foundationbank.project.Services;
 
-import java.util.List;
-
-import com.foundationbank.project.model.Transaction;
+import com.foundationbank.project.payload.DTO.TransactionDTO;
+import com.foundationbank.project.payload.Response.TransactionResponse;
 
 public interface TransactionService {
 
-    Transaction createTransaction(Transaction transaction, Long accountId);
-    Transaction getTransactionById(Long id);
-    List<Transaction> getAllTransactionsFromAccount(Long accountId);
+    TransactionDTO createTransaction(TransactionDTO transaction, Long accountId);
+    TransactionResponse getTransactionById(Long id);
+    TransactionResponse getAllTransactionsFromAccount(Long accountId);
     
 }
