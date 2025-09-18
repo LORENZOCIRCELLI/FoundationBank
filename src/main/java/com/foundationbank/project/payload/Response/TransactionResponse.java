@@ -2,6 +2,9 @@ package com.foundationbank.project.payload.Response;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+
+import com.foundationbank.project.payload.DTO.TransactionDTO;
 
 import lombok.Data;
 
@@ -28,6 +31,8 @@ public class TransactionResponse {
     private BigDecimal amount;
     private String description;
     private LocalDate transactionDate;
+
+    List<TransactionDTO> transactionsList;
 
     private AccountResponse account;
     private AccountResponse relatedAccount;
