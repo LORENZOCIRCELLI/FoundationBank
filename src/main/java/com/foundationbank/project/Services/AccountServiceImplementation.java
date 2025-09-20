@@ -22,10 +22,8 @@ import com.foundationbank.project.model.enums.TransactionType;
 import com.foundationbank.project.payload.DTO.AccountDTO;
 import com.foundationbank.project.payload.Response.AccountResponse;
 
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class AccountServiceImplementation implements AccountService{
 
     @Autowired
@@ -70,7 +68,9 @@ public class AccountServiceImplementation implements AccountService{
             return modelMapper.map(savedAccount, AccountDTO.class);
 
         }else{
+
             throw new APIException("Account already exists!");
+        
         }
 
         

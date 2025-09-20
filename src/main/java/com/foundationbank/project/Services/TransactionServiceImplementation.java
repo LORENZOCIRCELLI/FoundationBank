@@ -46,7 +46,6 @@ public class TransactionServiceImplementation implements TransactionService{
         transactionResponse.setTransactionsList(allTransactionDTOsListFromAccount);
         return transactionResponse;
 
-
     }
 
     @Override
@@ -73,7 +72,6 @@ public class TransactionServiceImplementation implements TransactionService{
         Transaction transaction = transactionRepository.findById(id).orElseThrow(()-> new RuntimeException("This transaction don't exist in the database"));
         return modelMapper.map(transaction, TransactionResponse.class);
         
-
     }
     
 }

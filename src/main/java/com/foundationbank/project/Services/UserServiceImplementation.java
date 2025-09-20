@@ -1,7 +1,6 @@
 package com.foundationbank.project.Services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,28 +47,35 @@ public class UserServiceImplementation implements UserService{
             return modelMapper.map(savedUser, UserDTO.class);
 
         }else{
+            
             throw new APIException("The user already exists in the bank!");
+
         }
     
     }
 
     @Override
     public UserResponse getUserById(Long userId) {
+
         User userFromDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user", "userId", userId));
         return modelMapper.map(userFromDb, UserResponse.class);
+
     }
 
     @Override
     public UserResponse getAllUsers() {
+
         List<User> allUsersList = userRepository.findAll();
         List<UserDTO> userDTOsList = allUsersList.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
         UserResponse userResponse = new UserResponse();
         userResponse.setUserDTOsList(userDTOsList);
         return userResponse;
+
     }
 
     @Override
     public UserDTO updateUser(UserDTO userDTO, Long id) {
+
         User userFromDb = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found or don't exist with id: " + id));
         
         User mappedUser = modelMapper.map(userDTO, User.class); 
@@ -84,13 +90,16 @@ public class UserServiceImplementation implements UserService{
 
         User savedUser = userRepository.save(userFromDb);
         return modelMapper.map(savedUser, UserDTO.class);
+    
     }
 
     @Override
     public UserDTO deleteUser(Long userId) {
+
         User userFromDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user", "userId", userId));
         userRepository.delete(userFromDb);
         return modelMapper.map(userFromDb, UserDTO.class);
+
     }
     
 }
