@@ -1,5 +1,7 @@
 package com.foundationbank.project.Controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 
 
-@RestController()
+@RestController
 @RequestMapping("/account")
 public class AccountController {
 
@@ -60,4 +62,19 @@ public class AccountController {
         return new ResponseEntity<>(deletedAccount, HttpStatus.OK);
     }
 
+    @PutMapping("deposit/{id}")
+    public ResponseEntity<String> deposit(@PathVariable Long id, @RequestBody BigDecimal amount) {
+
+        accountService.deposit(id, amount);
+        return new ResponseEntity<>("The deposit was successfull", HttpStatus.OK);
+    
+    }
+
+    @PutMapping("withdraw/{id}")
+    public ResponseEntity<String> withdraw(@PathVariable Long id, @RequestBody BigDecimal amount) {
+
+        accountService.withdraw(id, amount);
+        return new ResponseEntity<>("The deposit was successfull", HttpStatus.OK);
+    
+    }
 }

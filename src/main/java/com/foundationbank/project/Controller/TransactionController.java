@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.foundationbank.project.Services.TransactionService;
 
-@RestController()
+@RestController
 @RequestMapping("/transaction")
 public class TransactionController {
 

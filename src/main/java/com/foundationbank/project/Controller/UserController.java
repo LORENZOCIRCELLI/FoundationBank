@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foundationbank.project.Repositories.UserRepository;
 import com.foundationbank.project.Services.UserService;
 import com.foundationbank.project.payload.DTO.UserDTO;
 import com.foundationbank.project.payload.Response.UserResponse;
@@ -25,7 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
-@RestController()
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -41,8 +40,8 @@ public class UserController {
 
 
     @GetMapping("/find")
-    public ResponseEntity<List<UserDTO>> listAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
+    public ResponseEntity<List<UserResponse>> listAllUsers() {
+        List<UserResponse> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
