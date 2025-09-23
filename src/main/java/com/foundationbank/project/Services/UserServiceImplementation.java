@@ -63,14 +63,19 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
-    public UserResponse getAllUsers() {
+    public List<UserResponse> getAllUsers() {
+        List<User> users = userRepository.findAll();
 
-        List<User> allUsersList = userRepository.findAll();
-        List<UserDTO> userDTOsList = allUsersList.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
-        UserResponse userResponse = new UserResponse();
-        userResponse.setUserDTOsList(userDTOsList);
-        return userResponse;
-
+        return users.stream()
+                    .map(user -> {
+                        UserResponse response = new UserResponse();
+                        response.setName(user.getName());
+                        response.setSurname(user.getSurname());
+                        response.setEmail(user.getEmail());
+                        response.setDateOfBirth(user.getDateOfBirth());
+                        return response;
+                    })
+                    .toList();
     }
 
     @Override
