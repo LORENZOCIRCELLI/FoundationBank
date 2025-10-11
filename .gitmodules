@@ -1,0 +1,6 @@
+[submodule "backend-spring"]
+	path = backend-spring
+	url = https://github.com/LORENZOCIRCELLI/FoundationBank-Backend.git
+[submodule "frontend-react"]
+	path = frontend-react
+	url = https://github.com/LORENZOCIRCELLI/FoundationBank-Frontend.git
